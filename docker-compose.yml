@@ -1,0 +1,33 @@
+services:
+  # Contenidor de l'aplicació Laravel
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tonicovas/da03-app # Canvia això pel teu usuari de Docker Hub
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - laravel-network
+
+  # Contenidor de la base de dades
+  db:
+    image: mariadb:10.11
+    restart: always
+    environment:
+      MYSQL_DATABASE: laravel_db
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3307:3306"
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
