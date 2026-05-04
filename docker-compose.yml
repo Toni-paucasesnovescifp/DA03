@@ -7,8 +7,8 @@ services:
     image: antonicovas/laravel-da03:latest # Canvia això pel teu usuari de Docker Hub
     ports:
       - "8000:80"
-    volumes:
-      - .:/var/www/html
+    #volumes:
+    #  - .:/var/www/html
     depends_on:
       - db
     networks:
