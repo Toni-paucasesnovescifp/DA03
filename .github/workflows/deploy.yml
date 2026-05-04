@@ -48,5 +48,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/laravel-da03:latest
-            sudo docker-compose down || true
-            sudo docker-compose up -d
+            sudo docker compose down || true
+            sudo docker compose up -d
