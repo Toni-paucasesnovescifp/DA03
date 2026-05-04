@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: tonicovas/da03-app # Canvia això pel teu usuari de Docker Hub
+    image: antonicovas/laravel-da03:latest # Canvia això pel teu usuari de Docker Hub
     ports:
       - "8000:80"
     volumes:
@@ -18,6 +18,7 @@ services:
   db:
     image: mariadb:10.11
     restart: always
+    command: --skip-name-resolve
     environment:
       MYSQL_DATABASE: laravel_db
       MYSQL_USER: laravel_user

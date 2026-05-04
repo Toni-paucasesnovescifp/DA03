@@ -31,7 +31,14 @@ class ArticleController extends Controller
     // ENDPOINT PRIVAT 2: Esborrar un article (Protegit amb Token)
     public function destroy($id)
     {
-        Article::destroy($id);
+        $article = Article::find($id); // Primer el busquem
+
+        if (!$article) {
+            return response()->json(['m' => 'No trobat, no es pot esborrar'], 404);
+        }
+
+        $article->delete(); // L'esborrem si existeix
         return response()->json(['m' => 'Article eliminat'], 200);
     }
+
 }
